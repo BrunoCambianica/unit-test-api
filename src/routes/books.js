@@ -19,8 +19,8 @@ const getBook = (req, res) => {
     err
       ? res.status(400).send({ message: "book does not exist" })
       : res.status(200).send({
-        message: 'book fetched',
-        book: data
+        book: data,
+        message: 'book successfully added'
       });
   });
 };
@@ -34,7 +34,7 @@ const postBook = (req, res) => {
     err
       ? res.status(400).send({ message: "book does not exist" })
       : res.status(200).send({
-        data,
+        book: data,
         message: 'book fetched'
       });
   });
@@ -63,7 +63,7 @@ const updateBook = (req, res) => {
       err
         ? res.status(400).send({ message: "an Error occured" })
         : res.status(200).send({
-          data,
+          book: data,
           message: 'book successfully updated'
         });
     }
