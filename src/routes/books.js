@@ -19,7 +19,10 @@ const postBook = (req, res) => {
   obj.save((err, data) => {
     err
       ? res.status(400).send({ message: "an Error occured" })
-      : res.status(200).send(data);
+      : res.status(200).send({
+        data,
+        message: 'book successfully added'
+      });
   });
 };
 
@@ -30,7 +33,10 @@ const getBook = (req, res) => {
   books.findById(req.params.id, (err, data) => {
     err
       ? res.status(400).send({ message: "book does not exist" })
-      : res.status(200).send(data);
+      : res.status(200).send({
+        data,
+        message: 'book fetched'
+      });
   });
 };
 
@@ -56,7 +62,10 @@ const updateBook = (req, res) => {
     (err, data) => {
       err
         ? res.status(400).send({ message: "an Error occured" })
-        : res.status(200).send(data);
+        : res.status(200).send({
+          data,
+          message: 'book successfully updated'
+        });
     }
   );
 };
