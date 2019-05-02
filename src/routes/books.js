@@ -20,7 +20,7 @@ const getBook = (req, res) => {
       ? res.status(400).send({ message: "book does not exist" })
       : res.status(200).send({
         book: data,
-        message: 'book successfully added'
+        message: 'book fetched'
       });
   });
 };
@@ -35,7 +35,7 @@ const postBook = (req, res) => {
       ? res.status(400).send({ message: "book does not exist" })
       : res.status(200).send({
         book: data,
-        message: 'book fetched'
+        message: 'book successfully added'
       });
   });
 };

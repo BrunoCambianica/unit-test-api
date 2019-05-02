@@ -36,27 +36,11 @@ describe('/GET book', () => {
         expect(res.body).to.be.an('object');
         expect(res).to.have.status(200);
         expect(res.body.books).to.be.an('array');
-        //expect(res.body.books.length).to.equal(0);
+        expect(res.body.books.length).to.equal(0);
         done();
       });
   });
 });
-
-/**
- * Premier test unitaire
- */
-describe('/GET book', () => {
-  it('it should GET all the books', done => {
-    nock(localhost)
-    .get('/book')
-    .reply(200,{
-        books: [
-            {
-            id: '0db0b43e-dddb-47ad-9b4a-e5fe9ec7c2a9', title: 'Coco raconte Channel 2',
-            years: 1990,
-            pages: 400
-            } ]
-    });
       
 /*
  * 2ème test Intégration
@@ -131,5 +115,23 @@ describe('/DELETE book', () => {
         expect(res.body.message).to.equal('book successfully deleted');
         done();
       });
+  });
+});
+
+/**
+  * Premier test unitaire
+  */
+describe('/GET book', () => {
+  it('it should GET all the books', done => {
+    nock(localhost)
+    .get('/book')
+    .reply(200,{
+        books: [
+            {
+            id: '0db0b43e-dddb-47ad-9b4a-e5fe9ec7c2a9', title: 'Coco raconte Channel 2',
+            years: 1990,
+            pages: 400
+            } ]
+    });
   });
 });
