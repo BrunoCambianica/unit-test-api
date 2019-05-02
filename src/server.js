@@ -16,7 +16,10 @@ if (config.util.getEnv("NODE_ENV") !== "test") {
   app.use(morgan("combined")); //'combined' outputs the Apache style LOGs
 }
 
+// connection to db
 const confMongo = require("./config/config-mongo");
+
+
 
 // mongodb connection
 mongoose.connect(confMongo.database);

@@ -7,7 +7,7 @@ const getBooks = (req, res) => {
   books.find({}, (err, data) => {
     err
       ? res.status(400).send({ message: "error fetching books" })
-      : res.status(200).send(data);
+      : res.status(200).send({'books': data});
   });
 };
 
@@ -19,7 +19,7 @@ const postBook = (req, res) => {
   obj.save((err, data) => {
     err
       ? res.status(400).send({ message: "an Error occured" })
-      : res.status(200).send({ message: "book successfully added" });
+      : res.status(200).send(data);
   });
 };
 
@@ -56,7 +56,7 @@ const updateBook = (req, res) => {
     (err, data) => {
       err
         ? res.status(400).send({ message: "an Error occured" })
-        : res.status(200).send({ message: "book successfully updated" });
+        : res.status(200).send(data);
     }
   );
 };
