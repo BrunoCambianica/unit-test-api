@@ -19,9 +19,9 @@ const getBook = (req, res) => {
     err
       ? res.status(400).send({ message: "book does not exist" })
       : res.status(200).send({
-        book: data,
-        message: 'book fetched'
-      });
+          book: data,
+          message: "book fetched"
+        });
   });
 };
 
@@ -34,20 +34,9 @@ const postBook = (req, res) => {
     err
       ? res.status(400).send({ message: "book does not exist" })
       : res.status(200).send({
-        book: data,
-        message: 'book successfully added'
-      });
-  });
-};
-
-/*
- * DELETE /book/:id to delete a book given its id.
- */
-const deleteBook = (req, res) => {
-  books.remove({ _id: req.params.id }, (err, data) => {
-    err
-      ? res.status(400).send({ message: "an Error occured" })
-      : res.status(200).send({ message: "book successfully deleted" });
+          book: data,
+          message: "book successfully added"
+        });
   });
 };
 
@@ -62,12 +51,20 @@ const updateBook = (req, res) => {
     (err, data) => {
       err
         ? res.status(400).send({ message: "an Error occured" })
-        : res.status(200).send({
-          book: data,
-          message: 'book successfully updated'
-        });
+        : res.status(200).send({ message: "book successfully updated" });
     }
   );
+};
+
+/*
+ * DELETE /book/:id to delete a book given its id.
+ */
+const deleteBook = (req, res) => {
+  books.remove({ _id: req.params.id }, (err, data) => {
+    err
+      ? res.status(400).send({ message: "an Error occured" })
+      : res.status(200).send({ message: "book successfully deleted" });
+  });
 };
 
 //export all the functions
