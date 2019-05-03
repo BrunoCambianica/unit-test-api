@@ -36,7 +36,7 @@ describe('/GET book', () => {
         expect(res.body).to.be.an('object');
         expect(res).to.have.status(200);
         expect(res.body.books).to.be.an('array');
-        expect(res.body.books.length).to.equal(0);
+        //expect(res.body.books.length).to.equal(0);
         done();
       });
   });
@@ -124,17 +124,13 @@ describe('/GET book', () => {
   it('it should GET all the books 2 ', done => {
     nock(localhost)
     .get('/book')
-    .reply(200,{
-        books: []
-    });
+    .reply(200,{ books: [] });
     chai
       .request(localhost)
       .get('/book')
       .end((err, res) => {
-        expect(res.body).to.be.an('object');
         expect(res).to.have.status(200);
         expect(res.body.books).to.be.an('array');
-        //expect(res.body.books.length).to.equal(0);
         done();
       });
   });
@@ -165,4 +161,43 @@ describe('/POST book', () => {
         done();
       });
   });
+});
+
+/**
+  * Troisième test unitaire
+  */
+ describe('/PUT book', () => {
+  it('should PUT a book', done => {
+    nock(localhost)
+    .put(`/book/${id}`)
+      .reply(200, { message: 'book successfully updated' });
+    chai
+      .request(localhost)
+      .put(`/book/${id}`)
+      .send()
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.message).to.equal('book successfully updated');
+        done();
+      });
+  });
+});
+
+/**
+ * Quatirème test unitaire
+ */
+describe('/DELETE book', () => {
+it('it should DELETE book', done => {
+  nock(localhost)
+  .delete(`/book/${id}`)
+  .reply(200,{ message: 'book successfully deleted' });
+  chai
+    .request(localhost)
+    .delete(`/book/${id}`)
+    .end((err, res) => {
+      expect(res).to.have.status(200);
+      expect(res.body.message).to.equal('book successfully deleted');
+      done();
+    });
+});
 });
