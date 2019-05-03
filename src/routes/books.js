@@ -3,9 +3,9 @@ let books = require("../models/books");
 /**
  * This function comment is parsed by doctrine
  * @route GET /book
- * @group list of books
+ * @group Book
  * @returns {object} 200 - An array of book info
- * @returns {Error}  default - Unexpected error
+ * @returns {Error}  error fetching books
  */
 const getBooks = (req, res) => {
   books.find({}, (err, data) => {
@@ -18,9 +18,10 @@ const getBooks = (req, res) => {
 /**
  * This function comment is parsed by doctrine
  * @route GET /book/:id
+ * @group Book
  * @param {string} id.query.required - book id
  * @returns {object} 200 - Book details
- * @returns {Error}  default - Unexpected error
+ * @returns {Error}  book does not exist
  */
 const getBook = (req, res) => {
   books.findById(req.params.id, (err, data) => {
@@ -36,12 +37,13 @@ const getBook = (req, res) => {
 /**
  * This function comment is parsed by doctrine
  * @route POST /book
+ * @group Book
  * @param {string} title.body.required - book's title.
  * @param {number} years.body.required - book's years.
  * @param {number} pages.body.required - book's pages.
  * @returns {object} 200 - An array of book info
  * @returns {object} 200 - book successfully added
- * @returns {Error}  default - Unexpected error
+ * @returns {Error}  book does not exist
  */
 const postBook = (req, res) => {
   let obj = new books(req.body);
@@ -58,12 +60,13 @@ const postBook = (req, res) => {
 /**
  * This function comment is parsed by doctrine
  * @route PUT /book/:id
+ * @group Book
  * @param {string} id.query.required - book id
  * @param {string} title.body.required - book's title.
  * @param {number} years.body.required - book's years.
  * @param {number} pages.body.required - book's pages.
  * @returns {object} 200 - book successfully updated
- * @returns {Error}  default - Unexpected error
+ * @returns {Error}  an Error occured
  */
 const updateBook = (req, res) => {
   books.findByIdAndUpdate(
@@ -81,9 +84,10 @@ const updateBook = (req, res) => {
 /**
  * This function comment is parsed by doctrine
  * @route DELETE /book/:id
+ * @group Book
  * @param {string} id.query.required - book id
  * @returns {object} 200 - book successfully deleted
- * @returns {Error}  default - Unexpected error
+ * @returns {Error}  an Error occured
  */
 const deleteBook = (req, res) => {
   books.remove({ _id: req.params.id }, (err, data) => {
