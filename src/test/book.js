@@ -40,7 +40,7 @@ describe('/GET book', () => {
         done();
       });
   });
-}); 
+});  
       
 /*
  * 2ème test Intégration
