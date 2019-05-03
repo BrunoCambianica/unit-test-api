@@ -136,6 +136,7 @@ describe('/GET book', () => {
   });
 });
 
+
 /**
   * Quatrième test unitaire
   */
@@ -151,6 +152,25 @@ describe('/PUT book', () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.message).to.equal('book successfully updated');
+        done();
+      });
+  });
+});
+
+/**
+  * Quatrième test unitaire
+  */
+ describe('/DELETE book', () => {
+  it('it should DELETE book', done => {
+    nock(localhost)
+    .delete(`/book/${id}`)
+    .reply(200,{ message: 'book successfully deleted' });
+    chai
+      .request(localhost)
+      .delete(`/book/${id}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.message).to.equal('book successfully deleted');
         done();
       });
   });
