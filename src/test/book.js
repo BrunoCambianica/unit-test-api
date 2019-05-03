@@ -188,16 +188,92 @@ describe('/POST book', () => {
  */
 describe('/DELETE book', () => {
 it('it should DELETE book', done => {
-  nock(localhost)
-  .delete(`/book/${id}`)
-  .reply(200,{ message: 'book successfully deleted' });
-  chai
-    .request(localhost)
+    nock(localhost)
     .delete(`/book/${id}`)
-    .end((err, res) => {
-      expect(res).to.have.status(200);
-      expect(res.body.message).to.equal('book successfully deleted');
-      done();
+    .reply(200,{ message: 'book successfully deleted' });
+    chai
+      .request(localhost)
+      .delete(`/book/${id}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.message).to.equal('book successfully deleted');
+        done();
+      });
+  });
+});
+
+/**
+ * Sixième test unitaire
+ */
+describe('/GET book', () => {
+  it('it should DELETE book', done => {
+      nock(localhost)
+      .get(`/book/${id}`)
+      .reply(400,{ message: 'error fetching books' });
+      chai
+        .request(localhost)
+        .get(`/book/${id}`)
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          expect(res.body.message).to.equal('error fetching books');
+          done();
+        });
     });
 });
+
+/**
+ * Septième test unitaire
+ */
+describe('/POST book', () => {
+  it('it should POST book', done => {
+      nock(localhost)
+      .post(`/book/${id}`)
+      .reply(400,{ message: 'error adding the book' });
+      chai
+        .request(localhost)
+        .post(`/book/${id}`)
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          expect(res.body.message).to.equal('error adding the book');
+          done();
+        });
+    });
+});
+
+/**
+ * Huitième test unitaire
+ */
+describe('/PUT book', () => {
+  it('it should PUT book', done => {
+      nock(localhost)
+      .put(`/book/${id}`)
+      .reply(400,{ message: 'error updating the book' });
+      chai
+        .request(localhost)
+        .put(`/book/${id}`)
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          expect(res.body.message).to.equal('error updating the book');
+          done();
+        });
+    });
+});
+
+/**
+ * Neuvième test unitaire
+ */
+describe('/DELETE book', () => {
+  it('it should DELETE book', done => {
+      nock(localhost)
+      .delete(`/book/${id}`)
+      .reply(400,{ message: 'error deleting the book' });
+      chai
+        .request(localhost)
+        .delete(`/book/${id}`)
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          expect(res.body.message).to.equal('error deleting the book');
+          done();
+        });
+    });
 });
