@@ -135,3 +135,23 @@ describe('/GET book', () => {
       });
   });
 });
+
+/**
+  * Quatrième test unitaire
+  */
+describe('/PUT book', () => {
+  it('should PUT a book', done => {
+    nock(localhost)
+    .put(`/book/${id}`)
+      .reply(200, { message: 'book successfully updated' });
+    chai
+      .request(localhost)
+      .put(`/book/${id}`)
+      .send()
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.message).to.equal('book successfully updated');
+        done();
+      });
+  });
+});
