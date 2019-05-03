@@ -36,10 +36,11 @@ const getBook = (req, res) => {
 /**
  * This function comment is parsed by doctrine
  * @route POST /book
- * @param {Book.model} title.body.required - book's title.
- * @param {Book.model} years.body.required - book's years.
- * @param {Book.model} pages.body.required - book's pages.
+ * @param {string} title.body.required - book's title.
+ * @param {number} years.body.required - book's years.
+ * @param {number} pages.body.required - book's pages.
  * @returns {object} 200 - An array of book info
+ * @returns {object} 200 - book successfully added
  * @returns {Error}  default - Unexpected error
  */
 const postBook = (req, res) => {
@@ -56,11 +57,12 @@ const postBook = (req, res) => {
 
 /**
  * This function comment is parsed by doctrine
- * @route PUT /book
- * @param {Book.model} title.body.required - book's title.
- * @param {Book.model} years.body.required - book's years.
- * @param {Book.model} pages.body.required - book's pages.
- * @returns {object} 200 - An array of book info
+ * @route PUT /book/:id
+ * @param {string} id.query.required - book id
+ * @param {string} title.body.required - book's title.
+ * @param {number} years.body.required - book's years.
+ * @param {number} pages.body.required - book's pages.
+ * @returns {object} 200 - book successfully updated
  * @returns {Error}  default - Unexpected error
  */
 const updateBook = (req, res) => {
@@ -76,8 +78,12 @@ const updateBook = (req, res) => {
   );
 };
 
-/*
- * DELETE /book/:id to delete a book given its id.
+/**
+ * This function comment is parsed by doctrine
+ * @route DELETE /book/:id
+ * @param {string} id.query.required - book id
+ * @returns {object} 200 - book successfully deleted
+ * @returns {Error}  default - Unexpected error
  */
 const deleteBook = (req, res) => {
   books.remove({ _id: req.params.id }, (err, data) => {
