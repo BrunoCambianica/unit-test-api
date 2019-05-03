@@ -11,6 +11,7 @@
     "chai-nock": "^1.1.0",
     "config": "^1.20.1",
     "express": "^4.13.4",
+    "express-swagger-generator": "^1.1.14",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^4.13.18",
     "morgan": "^1.7.0",

@@ -1,7 +1,11 @@
 let books = require("../models/books");
 
-/*
- * GET /book route to retrieve all books.
+/**
+ * This function comment is parsed by doctrine
+ * @route GET /book
+ * @group list of books
+ * @returns {object} 200 - An array of book info
+ * @returns {Error}  default - Unexpected error
  */
 const getBooks = (req, res) => {
   books.find({}, (err, data) => {
@@ -11,8 +15,12 @@ const getBooks = (req, res) => {
   });
 };
 
-/*
- * GET /book/:id route to retrieve a book given its id.
+/**
+ * This function comment is parsed by doctrine
+ * @route GET /book/:id
+ * @param {string} id.query.required - book id
+ * @returns {object} 200 - Book details
+ * @returns {Error}  default - Unexpected error
  */
 const getBook = (req, res) => {
   books.findById(req.params.id, (err, data) => {
@@ -25,8 +33,14 @@ const getBook = (req, res) => {
   });
 };
 
-/*
- * POST /book to save a new book.
+/**
+ * This function comment is parsed by doctrine
+ * @route POST /book
+ * @param {Book.model} title.body.required - book's title.
+ * @param {Book.model} years.body.required - book's years.
+ * @param {Book.model} pages.body.required - book's pages.
+ * @returns {object} 200 - An array of book info
+ * @returns {Error}  default - Unexpected error
  */
 const postBook = (req, res) => {
   let obj = new books(req.body);
@@ -40,8 +54,14 @@ const postBook = (req, res) => {
   });
 };
 
-/*
- * PUT /book/:id to updatea a book given its id
+/**
+ * This function comment is parsed by doctrine
+ * @route PUT /book
+ * @param {Book.model} title.body.required - book's title.
+ * @param {Book.model} years.body.required - book's years.
+ * @param {Book.model} pages.body.required - book's pages.
+ * @returns {object} 200 - An array of book info
+ * @returns {Error}  default - Unexpected error
  */
 const updateBook = (req, res) => {
   books.findByIdAndUpdate(
